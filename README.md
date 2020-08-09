@@ -24,7 +24,7 @@ const TaskClock = require("task-clock");</code></pre>
 // 2020-08-09T12:39:27.604Z running task 2
 // 2020-08-09T12:39:28.603Z running task 3
 // etc...
-
+// ...
 // somewhere in the future running task 1057304576
 timer.close();
 // done</code></pre>
