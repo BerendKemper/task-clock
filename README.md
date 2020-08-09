@@ -52,7 +52,8 @@ timer.close();
 </ul>
 
 <h3>Examples</h3>
-<pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
+<pre><code class="language-javascript">
+new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
     interval: { s: 1.5 }, ticks: 5 });
 // 2020-08-09T18:30:00.001Z running task 1
 // 2020-08-09T18:30:01.500Z running task 2
@@ -61,10 +62,12 @@ timer.close();
 // 2020-08-09T18:30:06.000Z running task 5
 // done
 
+
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
     interval: { s: 3 }, ticks: 3 },
     tick => console.log(new Date().toISOString(), "task", tick));
 // 2020-08-09T12:37:36.220Z task 1
 // 2020-08-09T12:37:39.001Z task 2
 // 2020-08-09T12:37:42.000Z task 3
-// done</code></pre>
+// done
+</code></pre>
