@@ -27,9 +27,9 @@ const TaskClock = require("task-clock");</code></pre>
 // ...
 // somewhere in the future running task 1057304576
 timer.close();
-// done</code></pre>
+// somewhere in the future done</code></pre>
 
-<h3>new TaskClock([options],task)</h3>
+<h3>new TaskClock([options][,task])</h3>
 <ul>
     <li><code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a></li>
     <ul>
@@ -43,11 +43,16 @@ timer.close();
             <li><code>ms</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code></li>
         </ul>
         <li><code>ticks</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: <code>Infinity</code></li>
-        <li><code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>() => console.log("done")</code></li>
+        <li><code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>(tick, now) => console.log(now.toISOString(), "done")</code></li>
+        <ul>
+            <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
+            <li><code>now</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date></a></li>
+        </ul>
     </ul>
-    <li><code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>tick => console.log(new Date().toISOString(), "running task", tick)</code></li>
+    <li><code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>(tick, now) => console.log(now.toISOString(), "running task", tick)</code></li>
     <ul>
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
+        <li><code>now</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date></a></li>
     </ul>
 </ul>
 
@@ -61,14 +66,14 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000),
 // 2020-08-09T18:30:03.000Z running task 3
 // 2020-08-09T18:30:04.501Z running task 4
 // 2020-08-09T18:30:06.000Z running task 5
-// done
+// 2020-08-09T18:30:07.500Z done
 // ...
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
     interval: { s: 3 }, ticks: 3 },
-    tick => console.log(new Date().toISOString(), "task", tick));
+    (tick, now) => console.log(now.toISOString(), "task", tick));
 // 2020-08-09T12:37:36.220Z task 1
 // 2020-08-09T12:37:39.001Z task 2
 // 2020-08-09T12:37:42.000Z task 3
-// done
+// 2020-08-09T12:37:45.002Z done
 </code>
 </pre>
