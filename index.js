@@ -2,6 +2,7 @@
 const sMs = 1000;
 const mMs = sMs * 60;
 const hMs = mMs * 60;
+const dMs = hMs * 24;
 module.exports = class TaskClock {
     /**
      * 
@@ -22,8 +23,8 @@ module.exports = class TaskClock {
         if (typeof options === "function")
             task = options;
         const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = () => console.log("done"), logger = tick => console.log(new Date().toISOString(), "tick", tick) } = options;
-        const { h = 0, m = 0, s = 0, ms = 0 } = interval;
-        const intervalMs = h * hMs + m * mMs + s * sMs + ms || sMs;
+        const { d = 0, h = 0, m = 0, s = 0, ms = 0 } = interval;
+        const intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
         let _ticks = 0;
         let done = false
         this.close = () => {
