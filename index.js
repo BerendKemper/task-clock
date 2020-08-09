@@ -21,22 +21,34 @@ module.exports = class TaskClock {
     constructor(options = {}, task) {
         if (typeof options === "function")
             task = options;
-        const { start = new Date(Date.now() - 1), interval = {}, ticks = 0, lastTick = () => console.log("done"), logger = counter => console.log(new Date().toISOString(), "tick", counter) } = options;
+        const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = () => console.log("done"), logger = tick => console.log(new Date().toISOString(), "tick", tick) } = options;
         const { h = 0, m = 0, s = 0, ms = 0 } = interval;
         const intervalMs = h * hMs + m * mMs + s * sMs + ms || sMs;
-        let ticks = 0;
+        let _ticks = 0;
+        let done = false
+        Object.defineProperty(this, 'done', {
+            get() { return done; },
+            set(value) {
+                if (value === true) {
+                    done = true;
+                    task = lastTick;
+                }
+            }, enumerable: true
+        });
         const nextTick = () => {
             const taskTime = start.getTime();
             const diffTime = Date.now() - taskTime;
             if (diffTime >= 0) {
-                const tick = ticks;
-                logger(ticks++);
+                const tick = _ticks;
+                logger(_ticks++);
                 task(tick);
                 if (ticks !== 0) {
-                    if (counter === ticks + 1)
+                    if (this.done === true)
                         return;
-                    if (counter === ticks)
+                    if (_ticks === ticks) {
                         task = lastTick;
+                        this.done = true;
+                    }
                 }
                 let nextTime = taskTime + intervalMs;
                 const now = Date.now();
