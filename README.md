@@ -7,7 +7,7 @@ JavaScript task clock module
     <ul>
         <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
         <ul>
-            <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.close()</a></li>
+            <li><a href="https://github.com/BerendKemper/task-clock#taskclockclose">taskClock.close()</a></li>
         </ul>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options], task)</a></li>
     </ul>
