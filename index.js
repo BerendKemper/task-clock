@@ -16,13 +16,12 @@ module.exports = class TaskClock {
      * @param {Number} options.interval.ms
      * @param {Number} options.ticks
      * @param {Function} options.lastTick
-     * @param {Function} options.logger
      * @param {Function} task
      */
-    constructor(options = {}, task) {
+    constructor(options = {}, task = tick => console.log(new Date().toISOString(), "running task", tick)) {
         if (typeof options === "function")
             task = options;
-        const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = () => console.log("done"), logger = tick => console.log(new Date().toISOString(), "tick", tick) } = options;
+        const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = () => console.log("done") } = options;
         const { d = 0, h = 0, m = 0, s = 0, ms = 0 } = interval;
         const intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
         let tick = 0;
@@ -42,7 +41,6 @@ module.exports = class TaskClock {
                     if (tick === ticks)
                         this.close();
                 }
-                logger(tick);
                 let nextTime = taskTime + intervalMs;
                 const now = Date.now();
                 while (nextTime < now)
