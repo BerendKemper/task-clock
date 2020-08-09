@@ -31,7 +31,8 @@ const TaskClock = require("task-clock");</code></pre>
 
 <h3>Examples</h3>
 <pre><code class="language-javascript">
-new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5 }, ticks: 5 }, () => console.log("running task"));
+new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5 }, ticks: 5 },
+    () => console.log("running task"));
 // 2020-08-09T12:07:09.950Z tick 0
 // running task
 // 2020-08-09T12:07:10.500Z tick 1
@@ -45,7 +46,8 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5
 // 2020-08-09T12:07:16.500Z tick 5
 // done
 
-new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }, ticks: 3 }, () => console.log("running task"));
+new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }, ticks: 3 },
+    () => console.log("running task"));
 // 2020-08-09T12:37:36.220Z tick 0
 // running task
 // 2020-08-09T12:37:39.001Z tick 1
