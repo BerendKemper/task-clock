@@ -11,8 +11,7 @@ const TaskClock = require("task-clock");</code></pre>
     <li>Returns: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;Boolean&gt;</a></li>
 </ul>
 Set <code>true</code> to end the timer.
-<pre><code class="language-javascript">
-const timer = new TaskClock(() => console.log("running task"));
+<pre><code class="language-javascript">const timer = new TaskClock(() => console.log("running task"));
 // 2020-08-09T12:39:26.604Z tick 0
 // running task
 // 2020-08-09T12:39:27.604Z tick 1
@@ -26,8 +25,7 @@ const timer = new TaskClock(() => console.log("running task"));
 
 timer.done = true;
 // somewhere in the future  tick 1057304577
-// done
-</code></pre>
+// done</code></pre>
 
 <h3>new TaskClock([options],callback)</h3>
 <ul>
@@ -55,8 +53,7 @@ timer.done = true;
 </ul>
 
 <h3>Examples</h3>
-<pre><code class="language-javascript">
-new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5 }, ticks: 5 },
+<pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5 }, ticks: 5 },
     () => console.log("running task"));
 // 2020-08-09T12:07:09.950Z tick 0
 // running task
@@ -80,5 +77,4 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }
 // 2020-08-09T12:37:42.000Z tick 2
 // running task
 // 2020-08-09T12:37:45.004Z tick 3
-// done
-</code></pre>
+// done</code></pre>
