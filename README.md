@@ -2,9 +2,34 @@
 JavaScript task clock module
 
 <pre><code class="language-javascript">npm i task-clock
-const TaskClock = require("task-clock");</code></pre>
-<h3>new TaskClock([options],callback)</h3>
 
+const TaskClock = require("task-clock");</code></pre>
+
+<h3>Class TaskClock</h3>
+<h3>taskClock.done</h3>
+<ul>
+    <li>Returns: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;Boolean&gt;</a></li>
+</ul>
+The done setter can end a timer.
+<pre><code class="language-javascript">
+const timer = new TaskClock(() => console.log("running task"));
+// 2020-08-09T12:39:26.604Z tick 0
+// running task
+// 2020-08-09T12:39:27.604Z tick 1
+// running task
+// 2020-08-09T12:39:28.603Z tick 2
+// running task
+// etc...
+
+// somewhere in the future  tick 1057304576
+// running task
+
+timer.done = true;
+// somewhere in the future  tick 1057304577
+// done
+</code></pre>
+
+<h3>new TaskClock([options],callback)</h3>
 <ul>
     <li><code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a></li>
     <ul>
@@ -55,22 +80,5 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }
 // 2020-08-09T12:37:42.000Z tick 2
 // running task
 // 2020-08-09T12:37:45.004Z tick 3
-// done
-
-const timer = new TaskClock(() => console.log("running task"));
-// 2020-08-09T12:39:26.604Z tick 0
-// running task
-// 2020-08-09T12:39:27.604Z tick 1
-// running task
-// 2020-08-09T12:39:28.603Z tick 2
-// running task
-// 2020-08-09T12:39:29.608Z tick 3
-// running task
-// etc...
-// somewhere in the future  tick 1057304576
-// running task
-
-timer.done = true;
-// somewhere in the future  tick 1057304577
 // done
 </code></pre>

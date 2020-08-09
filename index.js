@@ -30,8 +30,8 @@ module.exports = class TaskClock {
             get() { return done; },
             set(value) {
                 if (value === true) {
-                    done = true;
                     task = lastTick;
+                    done = true;
                 }
             }, enumerable: true
         });
@@ -47,7 +47,7 @@ module.exports = class TaskClock {
                         return;
                     if (_ticks === ticks) {
                         task = lastTick;
-                        this.done = true;
+                        done = true;
                     }
                 }
                 let nextTime = taskTime + intervalMs;
