@@ -7,7 +7,7 @@ JavaScript task clock module
     <ul>
         <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
         <ul>
-            <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.done</a></li>
+            <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.close()</a></li>
         </ul>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options], task)</a></li>
     </ul>
@@ -18,11 +18,7 @@ JavaScript task clock module
 const TaskClock = require("task-clock");</code></pre>
 
 <h3>Class TaskClock</h3>
-<h4>taskClock.done</h4>
-<ul>
-    <li>Returns: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;Boolean&gt;</a></li>
-</ul>
-Set <code>true</code> to end the timer.
+<h4>taskClock.close()</h4>
 <pre><code class="language-javascript">const timer = new TaskClock(() => console.log("running task"));
 // 2020-08-09T12:39:26.604Z tick 0
 // running task
