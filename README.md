@@ -1,8 +1,11 @@
 # TaskClock
 JavaScript task clock module
 
-<code>npm i task-clock</code>
-<code class="language-javascript">const TaskClock = require("task-clock");</code>
+<pre>
+<code>npm i task-clock
+class="language-javascript">const TaskClock = require("task-clock");
+</code>
+</pre>
 <h3>new TaskClock([options],callback)</h3>
 
 <ul>
