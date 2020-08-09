@@ -1,0 +1,21 @@
+{
+    "name": "task-clock",
+    "version": "1.0.0",
+    "description": "JavaScript task clock module",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BerendKemper/task-clock.git"
+    },
+    "keywords": [],
+    "author": {
+        "name": "Berend Kemper",
+        "email": "berend_kemper@hotmail.com"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/BerendKemper/task-clock/issues"
+    },
+    "homepage": "https://github.com/BerendKemper/task-clock#readme"
+}
