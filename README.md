@@ -1,6 +1,18 @@
 # TaskClock
 JavaScript task clock module
 
+Table of Contents
+<ul>
+    <li><a href="https://github.com/BerendKemper/task-clock#taskclock">TaskClock</a></li>
+    <ul>
+        <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
+        <ul>
+            <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.done</a></li>
+        </ul>
+        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionscallback">new TaskClock([options], task)</a></li>
+    </ul>
+</ul>
+
 <pre><code class="language-javascript">npm i task-clock
 
 const TaskClock = require("task-clock");</code></pre>
