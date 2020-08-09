@@ -35,7 +35,7 @@ Set <code>true</code> to end the timer.
 // somewhere in the future  tick 1057304576
 // running task
 
-timer.done = true;
+timer.close();
 // somewhere in the future  tick 1057304577
 // done</code></pre>
 
