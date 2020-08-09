@@ -69,6 +69,7 @@ const timer = new TaskClock(() => console.log("running task"));
 // etc...
 // somewhere in the future  tick 1057304576
 // running task
+
 timer.done = true;
 // somewhere in the future  tick 1057304577
 // done
