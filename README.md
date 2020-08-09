@@ -1,7 +1,7 @@
 # TaskClock
 JavaScript task clock module
 
-Table of Contents
+<h3>Table of Contents</h3>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#taskclock">TaskClock</a></li>
     <ul>
