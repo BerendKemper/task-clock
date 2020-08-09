@@ -9,7 +9,7 @@ JavaScript task clock module
         <ul>
             <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.done</a></li>
         </ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionscallback">new TaskClock([options], task)</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options], task)</a></li>
     </ul>
 </ul>
 
