@@ -32,7 +32,7 @@ module.exports = class TaskClock {
         };
         const nextTick = () => {
             const taskTime = start.getTime();
-            let now = Date.now();
+            let now = new Date();
             if (now.getTime() - taskTime >= 0) {
                 task(++tick, now);
                 if (ticks !== 0) {
