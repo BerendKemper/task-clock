@@ -36,8 +36,8 @@ module.exports = class TaskClock {
             const diffTime = Date.now() - taskTime;
             if (diffTime >= 0) {
                 const tick = _ticks++;
-                logger(tick);
                 task(tick);
+                logger(tick);
                 if (ticks !== 0) {
                     if (done === true)
                         return;
