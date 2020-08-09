@@ -28,3 +28,43 @@ const TaskClock = require("task-clock");</code></pre>
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
+
+<h3>Examples</h3>
+<pre><code class="language-javascript">
+new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 1.5 }, ticks: 5 }, () => console.log("running task"));
+// 2020-08-09T12:07:09.950Z tick 0
+// running task
+// 2020-08-09T12:07:10.500Z tick 1
+// running task
+// 2020-08-09T12:07:12.000Z tick 2
+// running task
+// 2020-08-09T12:07:13.500Z tick 3
+// running task
+// 2020-08-09T12:07:15.000Z tick 4
+// running task
+// 2020-08-09T12:07:16.500Z tick 5
+// done
+
+new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }, ticks: 3 }, () => console.log("running task"));
+// 2020-08-09T12:37:36.220Z tick 0
+// running task
+// 2020-08-09T12:37:39.001Z tick 1
+// running task
+// 2020-08-09T12:37:42.000Z tick 2
+// running task
+// 2020-08-09T12:37:45.004Z tick 3
+// done
+
+new TaskClock(() => console.log("running task"));
+// 2020-08-09T12:39:26.604Z tick 0
+// running task
+// 2020-08-09T12:39:27.604Z tick 1
+// running task
+// 2020-08-09T12:39:28.603Z tick 2
+// running task
+// 2020-08-09T12:39:29.608Z tick 3
+// running task
+// 2020-08-09T12:39:30.603Z tick 4
+// running task
+// etc...
+</code></pre>
