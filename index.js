@@ -26,15 +26,10 @@ module.exports = class TaskClock {
         const intervalMs = h * hMs + m * mMs + s * sMs + ms || sMs;
         let _ticks = 0;
         let done = false
-        Object.defineProperty(this, 'done', {
-            get() { return done; },
-            set(value) {
-                if (value === true) {
-                    task = lastTick;
-                    done = true;
-                }
-            }, enumerable: true
-        });
+        this.close = () => {
+            task = lastTick;
+            done = true;
+        };
         const nextTick = () => {
             const taskTime = start.getTime();
             const diffTime = Date.now() - taskTime;
@@ -45,10 +40,8 @@ module.exports = class TaskClock {
                 if (ticks !== 0) {
                     if (done === true)
                         return;
-                    if (_ticks === ticks) {
-                        task = lastTick;
-                        done = true;
-                    }
+                    if (_ticks === ticks)
+                        this.close();
                 }
                 let nextTime = taskTime + intervalMs;
                 const now = Date.now();
