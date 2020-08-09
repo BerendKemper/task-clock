@@ -39,11 +39,11 @@ module.exports = class TaskClock {
             const taskTime = start.getTime();
             const diffTime = Date.now() - taskTime;
             if (diffTime >= 0) {
-                const tick = _ticks;
-                logger(_ticks++);
+                const tick = _ticks++;
+                logger(tick);
                 task(tick);
                 if (ticks !== 0) {
-                    if (this.done === true)
+                    if (done === true)
                         return;
                     if (_ticks === ticks) {
                         task = lastTick;
