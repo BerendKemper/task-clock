@@ -67,17 +67,17 @@ timer.close();
 <h3>Examples</h3>
 <pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
     interval: { s: 1.5 }, ticks: 5 }, () => console.log("running task"));
-// 2020-08-09T12:07:09.950Z tick 0
+// 2020-08-09T18:30:00.001Z tick 0
 // running task
-// 2020-08-09T12:07:10.500Z tick 1
+// 2020-08-09T18:30:01.500Z tick 1
 // running task
-// 2020-08-09T12:07:12.000Z tick 2
+// 2020-08-09T18:30:03.000Z tick 2
 // running task
-// 2020-08-09T12:07:13.500Z tick 3
+// 2020-08-09T18:30:04.501Z tick 3
 // running task
-// 2020-08-09T12:07:15.000Z tick 4
+// 2020-08-09T18:30:06.000Z tick 4
 // running task
-// 2020-08-09T12:07:16.500Z tick 5
+// 2020-08-09T18:30:07.504Z tick 5
 // done
 
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
