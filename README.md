@@ -6,11 +6,11 @@ JavaScript task clock module
 const TaskClock = require("task-clock");</code></pre>
 
 <h3>Class TaskClock</h3>
-<h3>taskClock.done</h3>
+<h4>taskClock.done</h4>
 <ul>
     <li>Returns: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;Boolean&gt;</a></li>
 </ul>
-The done setter can end a timer.
+Set <code>true</code> to end the timer.
 <pre><code class="language-javascript">
 const timer = new TaskClock(() => console.log("running task"));
 // 2020-08-09T12:39:26.604Z tick 0
