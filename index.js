@@ -25,7 +25,7 @@ module.exports = class TaskClock {
         const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = () => console.log("done"), logger = tick => console.log(new Date().toISOString(), "tick", tick) } = options;
         const { d = 0, h = 0, m = 0, s = 0, ms = 0 } = interval;
         const intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
-        let _ticks = 0;
+        let tick = 0;
         let done = false
         this.close = () => {
             task = lastTick;
@@ -35,15 +35,14 @@ module.exports = class TaskClock {
             const taskTime = start.getTime();
             const diffTime = Date.now() - taskTime;
             if (diffTime >= 0) {
-                const tick = _ticks++;
-                task(tick);
-                logger(tick);
+                task(++tick);
                 if (ticks !== 0) {
                     if (done === true)
                         return;
-                    if (_ticks === ticks)
+                    if (tick === ticks)
                         this.close();
                 }
+                logger(tick);
                 let nextTime = taskTime + intervalMs;
                 const now = Date.now();
                 while (nextTime < now)

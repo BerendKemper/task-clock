@@ -20,19 +20,17 @@ const TaskClock = require("task-clock");</code></pre>
 <h3>Class TaskClock</h3>
 <h4>taskClock.close()</h4>
 <pre><code class="language-javascript">const timer = new TaskClock(() => console.log("running task"));
-// 2020-08-09T12:39:26.604Z tick 0
 // running task
-// 2020-08-09T12:39:27.604Z tick 1
+// 2020-08-09T12:39:26.604Z tick 1
 // running task
-// 2020-08-09T12:39:28.603Z tick 2
+// 2020-08-09T12:39:27.604Z tick 2
 // running task
+// 2020-08-09T12:39:28.603Z tick 3
 // etc...
 
-// somewhere in the future  tick 1057304576
 // running task
-
+// somewhere in the future  tick 1057304576
 timer.close();
-// somewhere in the future  tick 1057304577
 // done</code></pre>
 
 <h3>new TaskClock([options],task)</h3>
@@ -64,26 +62,24 @@ timer.close();
 <h3>Examples</h3>
 <pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
     interval: { s: 1.5 }, ticks: 5 }, () => console.log("running task"));
-// 2020-08-09T18:30:00.001Z tick 0
 // running task
-// 2020-08-09T18:30:01.500Z tick 1
+// 2020-08-09T18:30:00.001Z tick 1
 // running task
-// 2020-08-09T18:30:03.000Z tick 2
+// 2020-08-09T18:30:01.500Z tick 2
 // running task
-// 2020-08-09T18:30:04.501Z tick 3
+// 2020-08-09T18:30:03.000Z tick 3
 // running task
-// 2020-08-09T18:30:06.000Z tick 4
+// 2020-08-09T18:30:04.501Z tick 4
 // running task
-// 2020-08-09T18:30:07.504Z tick 5
+// 2020-08-09T18:30:06.000Z tick 5
 // done
 
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
     interval: { s: 3 }, ticks: 3 }, () => console.log("running task"));
-// 2020-08-09T12:37:36.220Z tick 0
 // running task
-// 2020-08-09T12:37:39.001Z tick 1
+// 2020-08-09T12:37:36.220Z tick 1
 // running task
-// 2020-08-09T12:37:42.000Z tick 2
+// 2020-08-09T12:37:39.001Z tick 2
 // running task
-// 2020-08-09T12:37:45.004Z tick 3
+// 2020-08-09T12:37:42.000Z tick 3
 // done</code></pre>
