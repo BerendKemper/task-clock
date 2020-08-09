@@ -65,7 +65,7 @@ timer.close();
 </ul>
 
 <h3>Examples</h3>
-<pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0)), 
+<pre><code class="language-javascript">new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
     interval: { s: 1.5 }, ticks: 5 }, () => console.log("running task"));
 // 2020-08-09T12:07:09.950Z tick 0
 // running task
