@@ -62,8 +62,7 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000),
 // 2020-08-09T18:30:04.501Z running task 4
 // 2020-08-09T18:30:06.000Z running task 5
 // done
-
-
+// ...
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
     interval: { s: 3 }, ticks: 3 },
     tick => console.log(new Date().toISOString(), "task", tick));
