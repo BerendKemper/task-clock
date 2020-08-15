@@ -3,14 +3,12 @@ JavaScript task clock module
 
 <h3>Table of Contents</h3>
 <ul>
-    <li><a href="https://github.com/BerendKemper/task-clock#taskclock">TaskClock</a></li>
+    <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
-        <ul>
-            <li><a href="https://github.com/BerendKemper/task-clock#taskclockclose">taskClock.close()</a></li>
-        </ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockclose">taskClock.close()</a></li>
     </ul>
+    <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
+    <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
 
 <pre><code class="language-javascript">npm i task-clock
@@ -29,7 +27,7 @@ const TaskClock = require("task-clock");</code></pre>
 timer.close();
 // somewhere in the future done</code></pre>
 
-<h3>new TaskClock([options][,task])</h3>
+<h2>new TaskClock([options][,task])</h2>
 <ul>
     <li><code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a></li>
     <ul>
@@ -56,7 +54,7 @@ timer.close();
     </ul>
 </ul>
 
-<h3>Examples</h3>
+<h2>Examples</h2>
 <pre>
 <code>
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
