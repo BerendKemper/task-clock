@@ -17,8 +17,8 @@ JavaScript task clock module
 
 const TaskClock = require("task-clock");</code></pre>
 
-<h3>Class TaskClock</h3>
-<h4>taskClock.close()</h4>
+<h2>Class TaskClock</h2>
+<h3>taskClock.close()</h3>
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
