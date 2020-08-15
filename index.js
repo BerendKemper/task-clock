@@ -3,10 +3,8 @@ const sMs = 1000;
 const mMs = sMs * 60;
 const hMs = mMs * 60;
 const dMs = hMs * 24;
-module.exports = class TaskClock {
-    /**
-     * 
-     * @param {String} name
+class TaskClock {
+    /**@param {String} name
      * @param {Object} options
      * @param {Date} options.start
      * @param {Object} options.interval
@@ -16,12 +14,11 @@ module.exports = class TaskClock {
      * @param {Number} options.interval.ms
      * @param {Number} options.ticks
      * @param {Function} options.lastTick
-     * @param {Function} task
-     */
-    constructor(options = {}, task = (tick, now) => console.log(now.toISOString(), "running task", tick)) {
+     * @param {Function} task*/
+    constructor(options = {}, task = (now, tick) => console.log(now.toISOString(), "running task", tick)) {
         if (typeof options === "function")
             task = options;
-        const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = (tick, now) => console.log(now.toISOString(), "done") } = options;
+        const { start = new Date(Date.now() - 1), interval = {}, ticks = Infinity, lastTick = now => console.log(now.toISOString(), "done") } = options;
         const { d = 0, h = 0, m = 0, s = 0, ms = 0 } = interval;
         const intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
         let tick = 0;
@@ -34,7 +31,7 @@ module.exports = class TaskClock {
             const taskTime = start.getTime();
             let now = new Date();
             if (now.getTime() - taskTime >= 0) {
-                task(++tick, now);
+                task(now, ++tick);
                 if (ticks !== 0) {
                     if (done === true)
                         return;
@@ -52,3 +49,4 @@ module.exports = class TaskClock {
         nextTick();
     }
 };
+module.exports = TaskClock;

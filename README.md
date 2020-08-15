@@ -43,16 +43,16 @@ timer.close();
             <li><code>ms</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> | <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code></li>
         </ul>
         <li><code>ticks</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: <code>Infinity</code></li>
-        <li><code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>(tick, now) => console.log(now.toISOString(), "done")</code></li>
+        <li><code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>now => console.log(now.toISOString(), "done")</code></li>
         <ul>
-            <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
             <li><code>now</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date></a></li>
+            <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
         </ul>
     </ul>
-    <li><code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>(tick, now) => console.log(now.toISOString(), "running task", tick)</code></li>
+    <li><code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a> Default: <code>(now, tick) => console.log(now.toISOString(), "running task", tick)</code></li>
     <ul>
-        <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
         <li><code>now</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date></a></li>
+        <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
 
@@ -70,7 +70,7 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000),
 // ...
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
     interval: { s: 3 }, ticks: 3 },
-    (tick, now) => console.log(now.toISOString(), "task", tick));
+    (now, tick) => console.log(now.toISOString(), "task", tick));
 // 2020-08-09T12:37:36.220Z task 1
 // 2020-08-09T12:37:39.001Z task 2
 // 2020-08-09T12:37:42.000Z task 3

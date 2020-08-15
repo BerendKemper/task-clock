@@ -1,6 +1,6 @@
 {
     "name": "task-clock",
-    "version": "1.0.9",
+    "version": "2.0.0",
     "description": "JavaScript task clock module",
     "main": "index.js",
     "scripts": {},
