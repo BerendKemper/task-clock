@@ -3,7 +3,7 @@ JavaScript task clock module
 <pre><code class="language-javascript">npm i task-clock
 
 const TaskClock = require("task-clock");</code></pre>
-<h2>Table of Contents</h2>
+<h3>Table of Contents</h3>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
@@ -12,8 +12,8 @@ const TaskClock = require("task-clock");</code></pre>
     </ul>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
-<h1>Class TaskClock</h1>
-<h2>taskClock.close()</h2>
+<h2>Class TaskClock</h2>
+<h3>taskClock.close()</h3>
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
@@ -23,7 +23,7 @@ const TaskClock = require("task-clock");</code></pre>
 // somewhere in the future running task 1057304576
 timer.close();
 // somewhere in the future done</code></pre>
-<h2>new TaskClock([options][,task])</h2>
+<h3>new TaskClock([options][,task])</h3>
 <ul>
     <li><code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a></li>
     <ul>
@@ -49,7 +49,7 @@ timer.close();
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
-<h1>Examples</h1>
+<h2>Examples</h2>
 <pre>
 <code>
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
