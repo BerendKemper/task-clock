@@ -1,6 +1,8 @@
 # TaskClock
 JavaScript task clock module
+<pre><code class="language-javascript">npm i task-clock
 
+const TaskClock = require("task-clock");</code></pre>
 <h2>Table of Contents</h2>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
@@ -10,11 +12,6 @@ JavaScript task clock module
     </ul>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
-
-<pre><code class="language-javascript">npm i task-clock
-
-const TaskClock = require("task-clock");</code></pre>
-
 <h1>Class TaskClock</h1>
 <h2>taskClock.close()</h2>
 <pre><code class="language-javascript">const timer = new TaskClock();
@@ -26,7 +23,6 @@ const TaskClock = require("task-clock");</code></pre>
 // somewhere in the future running task 1057304576
 timer.close();
 // somewhere in the future done</code></pre>
-
 <h2>new TaskClock([options][,task])</h2>
 <ul>
     <li><code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a></li>
@@ -53,7 +49,6 @@ timer.close();
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
-
 <h1>Examples</h1>
 <pre>
 <code>
