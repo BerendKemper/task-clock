@@ -1,13 +1,13 @@
 # TaskClock
 JavaScript task clock module
 
-<h3>Table of Contents</h3>
+<h2>Table of Contents</h2>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockclose">taskClock.close()</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
     </ul>
-    <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
 
@@ -15,8 +15,8 @@ JavaScript task clock module
 
 const TaskClock = require("task-clock");</code></pre>
 
-<h2>Class TaskClock</h2>
-<h3>taskClock.close()</h3>
+<h1>Class TaskClock</h1>
+<h2>taskClock.close()</h2>
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
@@ -54,7 +54,7 @@ timer.close();
     </ul>
 </ul>
 
-<h2>Examples</h2>
+<h1>Examples</h1>
 <pre>
 <code>
 new TaskClock({ start: new Date(new Date().setSeconds(0, 0) + 60000), 
