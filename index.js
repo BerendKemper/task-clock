@@ -23,28 +23,28 @@ class TaskClock {
         const intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
         let tick = 0;
         let done = false
-        this.close = () => {
+        let timer;
+        this.finish = () => {
             task = lastTick;
             done = true;
         };
+        this.stop = () => clearTimeout(timer, lastTick(new Date()));
         const nextTick = () => {
             const taskTime = start.getTime();
             let now = new Date();
             if (now.getTime() - taskTime >= 0) {
                 task(now, ++tick);
-                if (ticks !== 0) {
-                    if (done === true)
-                        return;
-                    if (tick === ticks)
-                        this.close();
-                }
+                if (done === true)
+                    return;
+                if (tick === ticks)
+                    this.finish();
                 let nextTime = taskTime + intervalMs;
                 now = Date.now();
                 while (nextTime < now)
                     nextTime += intervalMs;
                 start.setTime(nextTime);
             }
-            setTimeout(nextTick, (start.getTime() - Date.now()) * 0.99);
+            timer = setTimeout(nextTick, (start.getTime() - Date.now()) * 0.99);
         };
         nextTick();
     }

@@ -13,7 +13,10 @@ const TaskClock = require("task-clock");</code></pre>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
 <h2>Class TaskClock</h2>
-<h3>taskClock.close()</h3>
+<h3>taskClock.finish()</h3>
+On the next <code>tick</code> the function <code>lastTick</code> will be executed and then the taskClock stops ticking.
+<h3>taskClock.finish()</h3>
+Immediately the function <code>lastTick</code> will be executed and the taskClock is stopped through clearTimeout(). 
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
@@ -21,7 +24,7 @@ const TaskClock = require("task-clock");</code></pre>
 // etc...
 // ...
 // somewhere in the future running task 1057304576
-timer.close();
+timer.finish();
 // somewhere in the future done</code></pre>
 <h3>new TaskClock([options][,task])</h3>
 <ul>
@@ -49,7 +52,7 @@ timer.close();
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
-The <code>start</code> option allows the developer to decide at what Date the taskClock should start, if <code>start</code> is a Date in the past taskClock will fire the <code>task</code> immediately and if <code>start</code> is a Date in the future taskClock will fire the <code>task</code> just-in-time (actually a few milliseconds too late and never too early). The <code>interval</code> option determines periodically when the next tick will occur, the <code>interval</code> time i calculated like a sum-product of all sub-options e.g. { h: 2, m: 60 } is equal to 3 hours. The <code>ticks</code> options allows the developer to configure the number of ticks until the timer stops e.g. 3ticks 30seconds interval password resetter. The password resetter example also needs a <code>lastTick</code> function to remove the possibility to enter a password. The <code>lastTick</code> option is a function that will be fired on the nextTick when the taskClock.close() has been called externally or internally when <code>ticks</code> have reached it's limit.
+The <code>start</code> option allows the developer to decide at what Date the taskClock should start, if <code>start</code> is a Date in the past taskClock will fire the <code>task</code> immediately and if <code>start</code> is a Date in the future taskClock will fire the <code>task</code> just-in-time (actually a few milliseconds too late and never too early). The <code>interval</code> option determines periodically when the next tick will occur, the <code>interval</code> time i calculated like a sum-product of all sub-options e.g. { h: 2, m: 60 } is equal to 3 hours. The <code>ticks</code> options allows the developer to configure the number of ticks until the timer stops e.g. 3ticks 30seconds interval password resetter. The password resetter example also needs a <code>lastTick</code> function to remove the possibility to enter a password. The <code>lastTick</code> option is a function that will be fired either on the nextTick when taskClock.finish() has been called or immediately when  taskClock.stop() has been called.
 <h2>Examples</h2>
 <pre>
 <code>
