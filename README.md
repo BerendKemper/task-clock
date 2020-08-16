@@ -1,5 +1,5 @@
 # TaskClock
-JavaScript task clock module
+JavaScript task clock module featuring options start, interval, ticks and lastTick
 <pre><code class="language-javascript">npm i task-clock
 
 const TaskClock = require("task-clock");</code></pre>
@@ -49,6 +49,7 @@ timer.close();
         <li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a></li>
     </ul>
 </ul>
+The <code>start</code> option allows the developer to decide at what Date the taskClock should start, if <code>start</code> is a Date in the past taskClock will fire the <code>task</code> immediately and if <code>start</code> is a Date in the future taskClock will fire the <code>task</code> just-in-time (actually a few milliseconds too late and never too early). The <code>interval</code> option determines periodically when the next tick will occur, the <code>interval</code> time i calculated like a sum-product of all sub-options e.g. { h: 2, m: 60 } is equal to 3 hours. The <code>ticks</code> options allows the developer to configure the number of ticks until the timer stops e.g. 3ticks 30seconds interval password resetter. The password resetter example also needs a <code>lastTick</code> function to remove the possibility to enter a password. The <code>lastTick</code> option is a fucntion that will be fired on the nextTick when the taskClock.close() has been called externally or internally when <code>ticks</code> have reached it's limit.
 <h2>Examples</h2>
 <pre>
 <code>
