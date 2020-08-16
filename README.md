@@ -7,7 +7,8 @@ const TaskClock = require("task-clock");</code></pre>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockclose">taskClock.close()</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockstop">taskClock.stop()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
     </ul>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
@@ -15,8 +16,8 @@ const TaskClock = require("task-clock");</code></pre>
 <h2>Class TaskClock</h2>
 <h3>taskClock.finish()</h3>
 On the next <code>tick</code> the function <code>lastTick</code> will be executed and then the taskClock stops ticking.
-<h3>taskClock.finish()</h3>
-Immediately the function <code>lastTick</code> will be executed and the taskClock is stopped through clearTimeout(). 
+<h3>taskClock.stop()</h3>
+Immediately the function <code>lastTick</code> will be executed and the taskClock is stopped through <code>clearTimeout()</code>. 
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
