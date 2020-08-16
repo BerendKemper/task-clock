@@ -17,7 +17,7 @@ const TaskClock = require("task-clock");</code></pre>
 <h3>taskClock.finish()</h3>
 On the next <code>tick</code> the function <code>lastTick(now, tick)</code> will be executed and then the taskClock stops ticking.
 <h3>taskClock.stop()</h3>
-Immediately the function <code>lastTick(now, tick)</code> will be executed and the taskClock is stopped through <code>clearTimeout()</code>. 
+Immediately the function <code>lastTick(new Date(), tick)</code> will be executed and the taskClock is stopped through <code>clearTimeout()</code>. 
 <pre><code class="language-javascript">const timer = new TaskClock();
 // 2020-08-09T12:39:26.604Z running task 1
 // 2020-08-09T12:39:27.604Z running task 2
