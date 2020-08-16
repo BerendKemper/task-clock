@@ -28,7 +28,7 @@ class TaskClock {
             task = lastTick;
             done = true;
         };
-        this.stop = () => clearTimeout(timer, lastTick(new Date()));
+        this.stop = () => clearTimeout(timer, lastTick(new Date(), tick));
         const nextTick = () => {
             const taskTime = start.getTime();
             let now = new Date();
