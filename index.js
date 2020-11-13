@@ -35,11 +35,10 @@ InternalTaskClock.prototype.nextTick = function nextTick() {
 InternalTaskClock.prototype.finish = function finish() {
 	this.task = this.lastTick;
 	this.done = true;
-}
+};
 InternalTaskClock.prototype.stop = function stop() {
-	delete (internalTaskClocks[this.key]);
 	clearTimeout(this.clock, this.lastTick(new Date(), this.tick));
-}
+};
 class TaskClock {
 	/**@param {String} name
 	 * @param {Object} options
@@ -60,7 +59,6 @@ class TaskClock {
 		this.stop = function stop() {
 			internalTaskClock.stop();
 		}
-	}
-
+	};
 };
 module.exports = TaskClock;
