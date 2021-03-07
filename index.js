@@ -3,44 +3,59 @@ const sMs = 1000;
 const mMs = sMs * 60;
 const hMs = mMs * 60;
 const dMs = hMs * 24;
-function InternalTaskClock(options, task) {
-	this.task = typeof options === "function" ? options : task || ((now, tick) => console.log(now.toISOString(), "running task", tick));
-	this.lastTick = options.lastTick || (now => console.log(now.toISOString(), "done"));
-	this.start = options.start || new Date(Date.now() - 1);
+function PrivateTaskClock(options, parent) {
+	if (options.ticks > Number.MAX_SAFE_INTEGER)
+		throw Error("Ticks should not go beyond safe integer");
+	this.parent = parent;
+	this.taskTime = options.start || new Date(Date.now() - 1);
 	const { interval: { d = 0, h = 0, m = 0, s = 0, ms = 0 } = {} } = options;
 	this.intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
 	this.ticks = options.ticks || Infinity;
 	this.tick = 0;
 	this.done = false;
-	this.clock = null;
-	this.nextTick();
 };
-InternalTaskClock.prototype.nextTick = function nextTick() {
-	const taskTime = this.start.getTime();
-	let now = new Date();
-	if (now.getTime() - taskTime >= 0) {
-		process.nextTick(this.task, now, ++this.tick);
-		if (this.done === true)
-			return;
-		if (this.tick >= this.ticks)
+PrivateTaskClock.prototype = {
+	fireTask() {
+		this.parent.task(new this.parent.DateModel(), ++this.tick);
+		if (this.tick === this.ticks)
 			this.finish();
-		let nextTime = taskTime + this.intervalMs;
-		now = Date.now();
-		while (nextTime < now)
-			nextTime += this.intervalMs;
-		this.start.setTime(nextTime);
+	},
+	nextTick() {
+		const now = new Date();
+		const nowMs = now.getTime();
+		let taskTime = this.taskTime.getTime();
+		let fire = false;
+		if (nowMs >= taskTime) {
+			if (this.done === true)
+				return this.fireTask();
+			taskTime += this.intervalMs;
+			fire = true;
+			if (nowMs > taskTime)
+				taskTime += this.intervalMs * Math.ceil((nowMs - taskTime) / this.intervalMs);
+		}
+		this.clock = setTimeout(() => this.nextTick(), (taskTime - Date.now()) * 0.95);
+		if (fire) {
+			this.taskTime.setTime(taskTime);
+			this.fireTask();
+		}
+	},
+	finish() {
+		this.parent.task = this.parent.lastTick;
+		this.done = true;
+	},
+	stop() {
+		clearTimeout(this.clock);
+		this.parent.lastTick(new this.parent.DateModel(), this.tick);
 	}
-	this.clock = setTimeout(() => this.nextTick(), (this.start.getTime() - Date.now()) * 0.99);
-};
-InternalTaskClock.prototype.finish = function finish() {
-	this.task = this.lastTick;
-	this.done = true;
-};
-InternalTaskClock.prototype.stop = function stop() {
-	clearTimeout(this.clock, this.lastTick(new Date(), this.tick));
 };
 class TaskClock {
-	/**@param {String} name
+	#private;
+	/**
+	 * Developers can configure their desired TaskClock. the methods task and lastTick
+	 * can be overwritten as options during construction or extend antoher class from 
+	 * TaskClock and give it the prototype methods task and lastTick. Configure the
+	 * option ticks to finish TaskClock ater given ticks that triggers lastTick. 
+	 * @param {String} name
 	 * @param {Object} options
 	 * @param {Date} options.start
 	 * @param {Object} options.interval
@@ -49,16 +64,46 @@ class TaskClock {
 	 * @param {Number} options.interval.s
 	 * @param {Number} options.interval.ms
 	 * @param {Number} options.ticks
+	 * @param {Function} options.task
 	 * @param {Function} options.lastTick
-	 * @param {Function} task*/
-	constructor(options = {}, task) {
-		const internalTaskClock = new InternalTaskClock(options, task);
-		this.finish = function finish() {
-			internalTaskClock.finish();
-		}
-		this.stop = function stop() {
-			internalTaskClock.stop();
-		}
+	 **/
+	constructor(options = {}) {
+		if (typeof options.task === "function")
+			this.lastTick = options.task;
+		if (typeof options.lastTick === "function")
+			this.lastTick = options.lastTick;
+		this.#private = new PrivateTaskClock(options, this);
+		this.#private.nextTick();
+	};
+	task(now, tick) {
+		console.log(now.toISOString(), "running task", tick);
+	};
+	lastTick(now) {
+		console.log(now.toISOString(), "done");
+	};
+	finish() {
+		this.#private.finish();
+	};
+	stop() {
+		this.#private.stop();
+	};
+	get ticks() {
+		return this.#private.ticks;
+	};
+	get tick() {
+		return this.#private.tick;
+	};
+	get intervalMs() {
+		return this.#private.intervalMs;
+	};
+	get nextTick() {
+		return this.#private.taskTime.getTime();
+	};
+	get done() {
+		return this.#private.done;
+	}
+	get DateModel() {
+		return Date;
 	};
 };
 module.exports = TaskClock;
