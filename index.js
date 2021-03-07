@@ -21,8 +21,7 @@ PrivateTaskClock.prototype = {
 			this.parent.finish();
 	},
 	nextTick() {
-		const now = new Date();
-		const nowMs = now.getTime();
+		const nowMs = Date.now();
 		let taskTime = this.taskTime.getTime();
 		let fire = false;
 		if (nowMs >= taskTime) {
