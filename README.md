@@ -9,7 +9,6 @@ const TaskClock = require("task-clock");</code></pre>
 <ul>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptions">new TaskClock([options])</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclocktasknow-tick">taskClock.task(now, tick)</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclocklastticknow-tick">taskClock.lastTick(now, tick)</a></li>
