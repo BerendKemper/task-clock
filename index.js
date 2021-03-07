@@ -18,7 +18,7 @@ PrivateTaskClock.prototype = {
 	fireTask() {
 		this.parent.task(new this.parent.DateModel(), ++this.tick);
 		if (this.tick === this.ticks)
-			this.finish();
+			this.parent.finish();
 	},
 	nextTick() {
 		const now = new Date();
@@ -38,14 +38,6 @@ PrivateTaskClock.prototype = {
 			this.taskTime.setTime(taskTime);
 			this.fireTask();
 		}
-	},
-	finish() {
-		this.parent.task = this.parent.lastTick;
-		this.done = true;
-	},
-	stop() {
-		clearTimeout(this.clock);
-		this.parent.lastTick(new this.parent.DateModel(), this.tick);
 	}
 };
 class TaskClock {
@@ -82,10 +74,12 @@ class TaskClock {
 		console.log(now.toISOString(), "done");
 	};
 	finish() {
-		this.#private.finish();
+		this.task = this.lastTick;
+		this.#private.done = true;
 	};
 	stop() {
-		this.#private.stop();
+		clearTimeout(this.#private.clock);
+		this.lastTick(new this.DateModel(), this.tick);
 	};
 	get ticks() {
 		return this.#private.ticks;
