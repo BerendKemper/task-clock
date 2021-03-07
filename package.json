@@ -1,6 +1,6 @@
 {
 	"name": "task-clock",
-	"version": "2.0.4",
+	"version": "2.1.0",
 	"description": "JavaScript task clock module featuring options start, interval, ticks and lastTick",
 	"main": "index.js",
 	"scripts": {},
