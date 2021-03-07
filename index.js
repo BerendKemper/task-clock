@@ -79,6 +79,7 @@ class TaskClock {
 	};
 	stop() {
 		clearTimeout(this.#private.clock);
+		this.#private.done = true;
 		this.lastTick(new this.DateModel(), this.tick);
 	};
 	get ticks() {
