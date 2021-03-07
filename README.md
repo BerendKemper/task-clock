@@ -17,26 +17,22 @@ const TaskClock = require("task-clock");</code></pre>
 </ul>
 <br>
 <h2>Class TaskClock</h2>
-<details>
-	<summary>
-		<h3>TaskClock.task(now, tick)</h3>
-	</summary>
-	<ul>
-		<details>
-			<summary>
-				<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
-			</summary>
-			returnes a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> object as the first parameter.
-		</details>
-		<details>
-			<summary>
-				<li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;Number&gt;</a>
-			</summary>
-			returnes the n-th <code>tick</code> as the second parameter, starting from 1, 2, 3 etc.
-		</details>
-	</ul>
-	Developers should configure a <code>task</code> method if anything usefull must be done. The <code>task</code> can be configured during construction or as a prototype method when extending a class of <code>TaskClock</code> and it may even be overwritten as instance property while actively ticking. 
-</details>
+<h3>TaskClock.task(now, tick)</h3>
+<ul>
+	<details>
+		<summary>
+			<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+		</summary>
+		returnes a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> object as the first parameter.
+	</details>
+	<details>
+		<summary>
+			<li><code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;Number&gt;</a>
+		</summary>
+		returnes the n-th <code>tick</code> as the second parameter, starting from 1, 2, 3 etc.
+	</details>
+</ul>
+Developers should configure a <code>task</code> method if anything usefull must be done. The <code>task</code> can be configured during construction or as a prototype method when extending a class of <code>TaskClock</code> and it may even be overwritten as instance property while actively ticking. 
 
 
 <h3>TaskClock.lastTick(now, tick)</h3>
