@@ -6,7 +6,7 @@ Configure your desired TaskClock.
 const TaskClock = require("task-clock");</code></pre>
 <br>
 <h3>Table of Contents</h3>
-<ul>
+<ul> 
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptions">new TaskClock([options])</a></li>
@@ -180,13 +180,14 @@ Readable property for internal purposes. Developers may configure a getter to re
 const LocaleTimezoneDate = require("locale-timezone-date");
 const TaskClock = require("task-clock");
 // ...
-new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
-    interval: { s: 3 }, ticks: 3 },
-    (now, tick) => console.log(now.toISOString(), "task", tick));
-// 2020-08-09T12:37:36.220Z task 1
-// 2020-08-09T12:37:39.001Z task 2
-// 2020-08-09T12:37:42.000Z task 3
-// 2020-08-09T12:37:45.002Z done
+new TaskClock({
+	start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }, ticks: 3,
+	tick: (now, tick) => console.log(now.toISOString(), "task", tick)
+});
+// 2021-03-07T15:20:26.485Z running task 1
+// 2021-03-07T15:20:27.005Z running task 2
+// 2021-03-07T15:20:30.006Z running task 3
+// 2021-03-07T15:20:33.004Z done
 // ...
 class MyClockA extends TaskClock {
 	task(now, tick) {
@@ -245,9 +246,9 @@ new Promise(resolve => {
 // finished promise
 // ...
 const timer = new TaskClock();
-// 2020-08-09T12:39:26.604Z running task 1
-// 2020-08-09T12:39:27.604Z running task 2
-// 2020-08-09T12:39:28.603Z running task 3
+// 2021-03-07T15:21:15.274Z running task 1
+// 2021-03-07T15:21:16.281Z running task 2
+// 2021-03-07T15:21:17.283Z running task 3
 // etc...
 // ...
 //(somewhere in the future running) task 1057304576
