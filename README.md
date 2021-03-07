@@ -10,8 +10,17 @@ const TaskClock = require("task-clock");</code></pre>
     <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
     <ul>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptions">new TaskClock([options])</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclocktasknow-tick">taskClock.task(now, tick)</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclocklastticknow-tick">taskClock.lastTick(now, tick)</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockstop">taskClock.stop()</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptionstask">new TaskClock([options][,task])</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockticks">taskClock.ticks</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclocktick">taskClock.tick</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockintervalms">taskClock.intervalMs</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclocknexttick">taskClock.nextTick</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.done</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockdatemodel">taskClock.DateModel</a></li>
     </ul>
     <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
 </ul>
@@ -165,7 +174,7 @@ Readable property of nextTick's time in milliseconds that will have elapsed sinc
 <h3>taskClock.done</h3>
 Readable property thast indicates whether taskClock is finishing or has stopped.
 <h3>taskClock.DateModel</h3>
-Readable property for internal purposes. Developers may configure a getter to return a self implemented Date model and this model must be extended from JavaScript's native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> class because internal metods from this class will be invoked. Below are examples with DateModel getter to be set to <a href="https://www.npmjs.com/package/locale-timezone-date">LocaleTimezoneDate</a>.
+Readable property for internal purposes. Developers may configure a getter to return a self implemented Date model and this model must be extended from JavaScript's native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> class because internal <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> metods will be invoked. Below are examples with DateModel getter to be set to <a href="https://www.npmjs.com/package/locale-timezone-date">LocaleTimezoneDate</a>.
 <h2>Examples</h2>
 
 ```javascript
@@ -180,7 +189,7 @@ new TaskClock({ start: new Date(new Date().setSeconds(0, 0)),
 // 2020-08-09T12:37:42.000Z task 3
 // 2020-08-09T12:37:45.002Z done
 // ...
-class MyClock extends TaskClock {
+class MyClockA extends TaskClock {
 	task(now, tick) {
 		const nowMs = now.getTime();
 		const delay = nowMs - this.prevTick;
@@ -194,7 +203,7 @@ class MyClock extends TaskClock {
 		return LocaleTimezoneDate;
 	};
 };
-new MyClock({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms: 200 }, ticks: 10 });
+new MyClockA({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms: 200 }, ticks: 10 });
 // 2021-03-07T12:19:07.022+0100 delay: NaN ms
 // 2021-03-07T12:19:07.213+0100 delay: 13 ms
 // 2021-03-07T12:19:07.415+0100 delay: 15 ms
@@ -207,7 +216,7 @@ new MyClock({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms: 
 // 2021-03-07T12:19:08.807+0100 delay: 7 ms
 // 2021-03-07T12:19:09.009+0100 last tick 11
 // ...
-class MyClock extends TaskClock {
+class MyClockB extends TaskClock {
 	task(now, tick) {
 		const nowMs = now.getTime();
 		const delay = nowMs - this.prevTick;
@@ -219,7 +228,7 @@ class MyClock extends TaskClock {
 	};
 };
 new Promise(resolve => {
-	new MyClock({
+	new MyClockB({
 		start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms: 200 }, ticks: 10,
 		lastTick: resolve
 	});
