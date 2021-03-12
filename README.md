@@ -12,6 +12,7 @@ const TaskClock = require("task-clock");</code></pre>
         <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptions">new TaskClock([options])</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclocktasknow-tick">taskClock.task(now, tick)</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclocklastticknow-tick">taskClock.lastTick(now, tick)</a></li>
+        <li><a href="https://github.com/BerendKemper/task-clock#taskclockstart">taskClock.start()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockstop">taskClock.stop()</a></li>
         <li><a href="https://github.com/BerendKemper/task-clock#taskclockticks">taskClock.ticks</a></li>
@@ -37,6 +38,12 @@ const TaskClock = require("task-clock");</code></pre>
 					<code>start</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a> Default: <code>new Date()</code>
 				</summary>
 				The <code>start</code> option must be an instance of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. If <code>start</code> is a date in the past <code>taskClock</code> calculates when <code>start</code> plus a number of <code>intervalMs</code> surpasses the time it is now and that calculated time is set to be the time of <code>nextTick</code>. If <code>start</code> is a date in the future <code>taskClock</code> waits untill the time it is now surpasses <code>start</code> and start ticking after that. Default for <code>start</code> is the time the instance of <code>taskClock</code> has been created.
+			</details>
+			<details>
+				<summary>
+					<code>autoStart</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;boolean&gt;</a> Default: <code>true</code>
+				</summary>
+				If <code>false</code> the <code>taskClock</code> is not started straight away but can manually by started by the method <code>taskClock.start</code>. When extending a class from <code>TaskClock</code> this option allows developers to initialize their own class properly before the <code>task</code> was invoked.
 			</details>
 			<details>
 				<summary>
@@ -158,6 +165,8 @@ Developers should configure a <code>task</code> method if anything usefull sould
 	</details>
 </ul>
 Developers may configure the <code>lastTick</code> method that will be invoked when <code>taskClock</code> finishes. The <code>lastTick</code> can be configured during construction or as a prototype method when extending a class of <code>TaskClock</code> and it may even be overwritten as instance property while actively ticking.
+<h3>taskClock.start()</h3>
+When constructing a <code>taskClock</code> and <code>options.autoStart</code> was set to <code>false</code>, developers can now invoke the method <code>start</code>. This helps to finish the construction of their own class (that is extended from TaskClock) before the <code>task</code> was invoked by a tick.
 <h3>taskClock.finish()</h3>
 Developers may invoke the <code>finish</code> method manually. This method sets the <code>done</code> property to <code>true</code> and <code>task</code> property to <code>lastTick</code> so that when <code>taskClock</code> reaches <code>nextTick</code> then <code>lastTick</code> is invoked instead of <code>task</code>. This method works different than the <code>stop</code> method.
 <h3>taskClock.stop()</h3>

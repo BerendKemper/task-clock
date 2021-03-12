@@ -40,6 +40,7 @@ class TaskClock {
 	 * @param {String} name
 	 * @param {Object} options
 	 * @param {Date} options.start
+	 * @param {Boolean} options.autoStart
 	 * @param {Object} options.interval
 	 * @param {Number} options.interval.h
 	 * @param {Number} options.interval.m
@@ -47,7 +48,6 @@ class TaskClock {
 	 * @param {Number} options.interval.ms
 	 * @param {Number} options.ticks
 	 * @param {Function} options.task
-	 * @param {Function} options.lastTick
 	 * @param {Function} options.lastTick
 	 **/
 	constructor(options = {}) {
