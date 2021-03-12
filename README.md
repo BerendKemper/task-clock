@@ -226,36 +226,42 @@ new MyClockA({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms:
 // 2021-03-07T12:19:09.009+0100 last tick 11
 // ...
 class MyClockB extends TaskClock {
-	constructor(lastTick) {
+	#resolve;
+	constructor(resolve, reject) {
 		super({
 			start: new Date(new Date().setHours(0, 0, 0, 0)),
 			interval: { ms: 200 },
 			ticks: 10,
-			lastTick
+			lastTick: reject, // if condition did not meet reject on lastTick
+			autoStart: false // maybe i need to initialize a property
 		});
+		this.#resolve = resolve;
+		this.start(); // 
 	};
 	task(now, tick) {
 		const nowMs = now.getTime();
 		const delay = nowMs - this.prevTick;
 		console.log(now.toLocaleISOString(), `delay: ${delay} ms`);
+		if (delay <= 2)
+			return this.resolve();
 		this.prevTick = this.nextTick;
+	};
+	resolve() {
+		this.lastTick = this.#resolve
+		this.stop();
 	};
 	get DateModel() {
 		return LocaleTimezoneDate;
 	};
 };
-new Promise(resolve => new MyClockB(resolve))
-	.then(() => console.log("finished promise"));
-// 2021-03-07T16:29:49.485+0100 delay: NaN ms
-// 2021-03-07T16:29:49.604+0100 delay: 4 ms
-// 2021-03-07T16:29:49.804+0100 delay: 4 ms
-// 2021-03-07T16:29:50.005+0100 delay: 5 ms
-// 2021-03-07T16:29:50.206+0100 delay: 6 ms
-// 2021-03-07T16:29:50.408+0100 delay: 8 ms
-// 2021-03-07T16:29:50.612+0100 delay: 12 ms
-// 2021-03-07T16:29:50.814+0100 delay: 14 ms
-// 2021-03-07T16:29:51.015+0100 delay: 15 ms
-// 2021-03-07T16:29:51.202+0100 delay: 2 ms
+new Promise((resolve, reject) => new MyClockB(resolve, reject))
+	.then(() => console.log("finished promise"))
+	.catch((now, tick) => console.log("Rejected: ", now.toLocaleISOString(), tick));
+// 2021-03-12T16:46:45.507+0100 delay: NaN ms
+// 2021-03-12T16:46:45.613+0100 delay: 13 ms
+// 2021-03-12T16:46:45.813+0100 delay: 13 ms
+// 2021-03-12T16:46:46.001+0100 delay: 1 ms
+// finished promise
 // ...
 const timer = new TaskClock();
 // 2021-03-07T15:21:15.274Z running task 1
