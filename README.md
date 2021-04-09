@@ -7,26 +7,6 @@ Configure your desired TaskClock.
 const TaskClock = require("task-clock");
 ```
 <br>
-<h3>Table of Contents</h3>
-<ul> 
-    <li><a href="https://github.com/BerendKemper/task-clock#class-taskclock">Class: TaskClock</a></li>
-    <ul>
-        <li><a href="https://github.com/BerendKemper/task-clock#new-taskclockoptions">new TaskClock([options])</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclocktasknow-tick">taskClock.task(now, tick)</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclocklastticknow-tick">taskClock.lastTick(now, tick)</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockstart">taskClock.start()</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockfinish">taskClock.finish()</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockstop">taskClock.stop()</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockticks">taskClock.ticks</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclocktick">taskClock.tick</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockintervalms">taskClock.intervalMs</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclocknexttick">taskClock.nextTick</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockdone">taskClock.done</a></li>
-        <li><a href="https://github.com/BerendKemper/task-clock#taskclockdatemodel">taskClock.DateModel</a></li>
-    </ul>
-    <li><a href="https://github.com/BerendKemper/task-clock#examples">Examples</a></li>
-</ul>
-<br>
 <h2>Class TaskClock</h2>
 <h3>new TaskClock([options])</h3>
 <ul>
