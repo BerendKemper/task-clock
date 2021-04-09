@@ -58,6 +58,7 @@ class TaskClock {
 		this.#taskTime = options.start instanceof Date ? options.start : new Date(Date.now() - 1);
 		const { interval: { d = 0, h = 0, m = 0, s = 0, ms = 0 } = {} } = options;
 		this.#intervalMs = d * dMs + h * hMs + m * mMs + s * sMs + ms || sMs;
+		// 2147483647 CANNOT BE LONGER THAN 32 bit int
 		this.#ticks = options.ticks < Number.MAX_SAFE_INTEGER ? options.ticks : Infinity;
 		if (options.autoStart !== false)
 			this.#nextTick();
