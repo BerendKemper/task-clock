@@ -154,7 +154,7 @@ Developers may invoke the <code>finish</code> method manually. This method sets 
 <h3>taskClock.stop()</h3>
 Developers may invoke the <code>stop</code> method manually. This method immediately stops <code>taskClock</code> from ticking further and it invokes <code>lastTick</code> straight away.
 <h3>taskClock.ticks</h3>
-Readable property <code>ticks</code>. 
+Readable property number of the number <code>ticks</code> until <code>taskClock</code> finishes. 
 <h3>taskClock.tick</h3>
 Readable property of the current <code>tick</code>.
 <h3>taskClock.intervalMs</h3>
