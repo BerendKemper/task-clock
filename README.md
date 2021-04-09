@@ -1,9 +1,11 @@
 # TaskClock
 Configure your desired TaskClock.
 <br>
-<pre><code class="language-javascript">npm i task-clock
+<pre><code>npm i task-clock</code></pre>
 
-const TaskClock = require("task-clock");</code></pre>
+```javascript
+const TaskClock = require("task-clock");
+```
 <br>
 <h3>Table of Contents</h3>
 <ul> 
@@ -189,20 +191,28 @@ Readable property for internal purposes. Developers may configure a getter to re
 const LocaleTimezoneDate = require("locale-timezone-date");
 const TaskClock = require("task-clock");
 // ...
+//*
 new TaskClock({
 	start: new Date(new Date().setSeconds(0, 0)), interval: { s: 3 }, ticks: 3,
-	tick: (now, tick) => console.log(now.toISOString(), "task", tick)
+	task: (now, tick) => console.log(now.toISOString(), "task", tick)
 });
-// 2021-03-07T15:20:26.485Z running task 1
-// 2021-03-07T15:20:27.005Z running task 2
-// 2021-03-07T15:20:30.006Z running task 3
-// 2021-03-07T15:20:33.004Z done
+// 2021-04-08T23:31:06.720Z task 1
+// 2021-04-08T23:31:09.014Z task 2
+// 2021-04-08T23:31:12.003Z task 3
+// 2021-04-08T23:31:15.010Z done
 // ...
+//*/
+
+
+//*
 class MyClockA extends TaskClock {
 	task(now, tick) {
 		const nowMs = now.getTime();
 		const delay = nowMs - this.prevTick;
-		console.log(now.toLocaleISOString(), `delay: ${delay} ms`);
+		if (tick > 1)
+			console.log(now.toLocaleISOString(), `delay: ${delay} ms`);
+		else
+			console.log(now.toLocaleISOString());
 		this.prevTick = this.nextTick;
 	};
 	lastTick(now, tick) {
@@ -212,57 +222,73 @@ class MyClockA extends TaskClock {
 		return LocaleTimezoneDate;
 	};
 };
-new MyClockA({ start: new Date(new Date().setHours(0, 0, 0, 0)), interval: { ms: 200 }, ticks: 10 });
-// 2021-03-07T12:19:07.022+0100 delay: NaN ms
-// 2021-03-07T12:19:07.213+0100 delay: 13 ms
-// 2021-03-07T12:19:07.415+0100 delay: 15 ms
-// 2021-03-07T12:19:07.601+0100 delay: 1 ms
-// 2021-03-07T12:19:07.805+0100 delay: 5 ms
-// 2021-03-07T12:19:08.008+0100 delay: 8 ms
-// 2021-03-07T12:19:08.210+0100 delay: 10 ms
-// 2021-03-07T12:19:08.414+0100 delay: 14 ms
-// 2021-03-07T12:19:08.602+0100 delay: 2 ms
-// 2021-03-07T12:19:08.807+0100 delay: 7 ms
-// 2021-03-07T12:19:09.009+0100 last tick 11
+new MyClockA({ start: new LocaleTimezoneDate().startOfDate({ ms: false }), interval: { ms: 200 }, ticks: 10 });
+// 2021-04-09T01:34:37.736+0200
+// 2021-04-09T01:34:37.802+0200 delay: 2 ms
+// 2021-04-09T01:34:38.005+0200 delay: 5 ms
+// 2021-04-09T01:34:38.206+0200 delay: 6 ms
+// 2021-04-09T01:34:38.408+0200 delay: 8 ms
+// 2021-04-09T01:34:38.611+0200 delay: 11 ms
+// 2021-04-09T01:34:38.815+0200 delay: 15 ms
+// 2021-04-09T01:34:39.001+0200 delay: 1 ms
+// 2021-04-09T01:34:39.205+0200 delay: 5 ms
+// 2021-04-09T01:34:39.407+0200 delay: 7 ms
+// 2021-04-09T01:34:39.611+0200 last tick 11
 // ...
+//*/
+
+
+//*
 class MyClockB extends TaskClock {
-	#resolve;
-	constructor(resolve, reject) {
+	#finish;
+	constructor(finish, lastTick) {
 		super({
 			start: new Date(new Date().setHours(0, 0, 0, 0)),
 			interval: { ms: 200 },
 			ticks: 10,
-			lastTick: reject, // if condition did not meet reject on lastTick
+			lastTick, // if condition did not meet reject on lastTick
 			autoStart: false // maybe i need to initialize a property
 		});
-		this.#resolve = resolve;
-		this.start(); // 
+		this.#finish = finish;
+		this.start();
 	};
 	task(now, tick) {
 		const nowMs = now.getTime();
 		const delay = nowMs - this.prevTick;
-		console.log(now.toLocaleISOString(), `delay: ${delay} ms`);
-		if (delay <= 2)
-			return this.resolve();
+		if (tick > 1)
+			console.log(now.toLocaleISOString(), `delay: ${delay} ms`, tick);
+		else
+			console.log(now.toLocaleISOString());
+		if (delay <= -2)
+			return this.stop();
 		this.prevTick = this.nextTick;
 	};
-	resolve() {
-		this.lastTick = this.#resolve
-		this.stop();
+	stop() {
+		this.lastTick = this.#finish
+		super.stop();
 	};
 	get DateModel() {
 		return LocaleTimezoneDate;
 	};
+	static promisify(resolve, reject) {
+		return new MyClockB(resolve, reject);
+	};
 };
-new Promise((resolve, reject) => new MyClockB(resolve, reject))
+new Promise(MyClockB.promisify)
 	.then(() => console.log("finished promise"))
-	.catch((now, tick) => console.log("Rejected: ", now.toLocaleISOString(), tick));
-// 2021-03-12T16:46:45.507+0100 delay: NaN ms
-// 2021-03-12T16:46:45.613+0100 delay: 13 ms
-// 2021-03-12T16:46:45.813+0100 delay: 13 ms
-// 2021-03-12T16:46:46.001+0100 delay: 1 ms
+	.catch(now => console.log("Rejected: ", now.toLocaleISOString()));
+//
+// 2021-04-09T02:04:03.203+0200
+// 2021-04-09T02:04:03.405+0200 delay: 5 ms
+// 2021-04-09T02:04:03.608+0200 delay: 8 ms
+// 2021-04-09T02:04:03.811+0200 delay: 11 ms
+// 2021-04-09T02:04:04.013+0200 delay: 13 ms
+// 2021-04-09T02:04:04.201+0200 delay: 1 ms
 // finished promise
 // ...
+//*/
+
+//*
 const timer = new TaskClock();
 // 2021-03-07T15:21:15.274Z running task 1
 // 2021-03-07T15:21:16.281Z running task 2
@@ -272,4 +298,5 @@ const timer = new TaskClock();
 //(somewhere in the future running) task 1057304576
 timer.finish();
 //(somewhere in the future) done
+//*/
 ```
