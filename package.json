@@ -1,22 +1,22 @@
 {
-	"name": "task-clock",
-	"version": "2.2.0",
-	"description": "JavaScript task clock module featuring options start, interval, ticks and lastTick",
-	"main": "index.js",
-	"scripts": {},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/BerendKemper/task-clock.git"
-	},
-	"keywords": [],
-	"author": {
-		"name": "Berend Kemper",
-		"email": "berend_kemper@hotmail.com",
-		"npmjs": "https://www.npmjs.com/~burndkemper"
-	},
-	"license": "MIT",
-	"bugs": {
-		"url": "https://github.com/BerendKemper/task-clock/issues"
-	},
-	"homepage": "https://github.com/BerendKemper/task-clock#readme"
+    "name": "task-clock",
+    "version": "2.2.1",
+    "description": "JavaScript task clock module featuring options start, interval, ticks and lastTick",
+    "main": "index.js",
+    "scripts": {},
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/BerendKemper/task-clock.git"
+    },
+    "keywords": [],
+    "author": {
+        "name": "Berend Kemper",
+        "email": "berend_kemper@hotmail.com",
+        "npmjs": "https://www.npmjs.com/~burndkemper"
+    },
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/BerendKemper/task-clock/issues"
+    },
+    "homepage": "https://github.com/BerendKemper/task-clock#readme"
 }
