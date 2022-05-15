@@ -1,6 +1,6 @@
 # TaskClock
 <div>Configure your desired TaskClock.</div>
-<div>`npm i task-clock`</div>
+<div><code>npm i task-clock</code></div>
 
 ```javascript
 const { TaskClock } = require("task-clock");
@@ -14,12 +14,12 @@ const { TaskClock } = require("task-clock");
     <ul>
         <details>
             <summary>
-                `options` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
+                <code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
             </summary>
             <ul>
                 <details>
                     <summary>
-                        `start` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a> Default: `new Date()`
+                        <code>start</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a> Default: <code>new Date()</code>
                     </summary>
                     <div>
                         The option start must be an instance of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. If start set to a date in the past the taskClock invokes the task immediately.
@@ -27,20 +27,20 @@ const { TaskClock } = require("task-clock");
                 </details>
                 <details>
                     <summary>
-                        `autoStart` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;boolean&gt;</a> Default: `true`
+                        <code>autoStart</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;boolean&gt;</a> Default: <code>true</code>
                     </summary>
                     <div>
-                        If the option autoStart is set to `false` the taskClock does not start untill the method start is invoked.
+                        If the option autoStart is set to <code>false</code> the taskClock does not start untill the method start is invoked.
                     </div>
                 </details>
                 <details>
                     <summary>
-                        `interval` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
+                        <code>interval</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
                     </summary>
                     <ul>
                         <details>
                             <summary>
-                                `d` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                                <code>d</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
                             </summary>
                             <div>
                                 Abbreviation for days.
@@ -48,7 +48,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `h` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                                <code>h</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
                             </summary>
                             <div>
                                 Abbreviation for hours.
@@ -56,7 +56,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `m` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                                <code>m</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
                             </summary>
                             <div>
                                 Abbreviation for minutes.
@@ -64,7 +64,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `s` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                                <code>s</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
                             </summary>
                             <div>
                                 Abbreviation for seconds.
@@ -72,7 +72,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `ms` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                                <code>ms</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
                             </summary>
                             <div>
                                 Abbreviation for milliseconds.
@@ -80,25 +80,25 @@ const { TaskClock } = require("task-clock");
                         </details>
                     </ul>
                     <div>
-                        The intervalMs is calculated as the sum of each defined parameters in milliseconds. The parameters don't require to be integers but can also be decimal numbers. A parameter h set to `2.5` hours is equal to 9 million milliseconds.
+                        The intervalMs is calculated as the sum of each defined parameters in milliseconds. The parameters don't require to be integers but can also be decimal numbers. A parameter h set to <code>2.5</code> hours is equal to 9 million milliseconds.
                     </div>
                 </details>
                 <details>
                     <summary>
-                        `ticks` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: `Infinity`
+                        <code>ticks</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: <code>Infinity</code>
                     </summary>
                     <div>
-                        The number of ticks untill lastTick and taskClock stops ticking. Default is `Infinity` and that is never reached. The largest possible date in JavaScript is in the year `275760` when milliseconds reach `8640000000000000` and this is smaller than <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">Number.MAX_SAFE_INTEGER</a> `9007199254740991`.
+                        The number of ticks untill lastTick and taskClock stops ticking. Default is <code>Infinity</code> and that is never reached. The largest possible date in JavaScript is in the year <code>275760</code> when milliseconds reach <code>8640000000000000</code> and this is smaller than <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">Number.MAX_SAFE_INTEGER</a> <code>9007199254740991</code>.
                     </div>
                 </details>
                 <details>
                     <summary>
-                        `task` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
+                        <code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
                     </summary>
                     <ul>
                         <details>
                             <summary>
-                                `now` &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                                <code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
                             </summary>
                             <div>
                                 An instance of a DateModel.
@@ -106,7 +106,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                                <code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
                             </summary>
                             <div>
                                 The current tick.
@@ -119,12 +119,12 @@ const { TaskClock } = require("task-clock");
                 </details>
                 <details>
                     <summary>
-                        `lastTick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
+                        <code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
                     </summary>
                     <ul>
                         <details>
                             <summary>
-                                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                                <code>now</code> <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
                             </summary>
                             <div>
                                 An instance of a DateModel.
@@ -132,7 +132,7 @@ const { TaskClock } = require("task-clock");
                         </details>
                         <details>
                             <summary>
-                                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                                <code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
                             </summary>
                             <div>
                                 The current tick.
@@ -153,7 +153,7 @@ const { TaskClock } = require("task-clock");
     <ul>
         <details>
             <summary>
-                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                <code>now</code> <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
             </summary>
             <div>
                 An instance of a DateModel.
@@ -161,7 +161,7 @@ const { TaskClock } = require("task-clock");
         </details>
         <details>
             <summary>
-                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                <code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
             </summary>
             <div>
                 The current tick.
@@ -178,7 +178,7 @@ const { TaskClock } = require("task-clock");
     <ul>
         <details>
             <summary>
-                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                <code>now</code> <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
             </summary>
             <div>
                 An instance of a DateModel.
@@ -186,7 +186,7 @@ const { TaskClock } = require("task-clock");
         </details>
         <details>
             <summary>
-                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                <code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
             </summary>
             <div>
                 The current tick.
@@ -201,7 +201,7 @@ const { TaskClock } = require("task-clock");
 <div>
     <h3>taskClock.start()</h3>
     <div>
-        In case the option autoStart was set to `false` in the constructor invoke this method manually.
+        In case the option autoStart was set to <code>false</code> in the constructor invoke this method manually.
     </div>
 </div>
 
