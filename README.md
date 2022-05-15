@@ -1,6 +1,6 @@
 # TaskClock
 <div>Configure your desired TaskClock.</div>
-<div><pre>`npm i task-clock`</pre></div>
+<div>`npm i task-clock`</div>
 
 ```javascript
 const { TaskClock } = require("task-clock");
