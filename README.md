@@ -1,175 +1,271 @@
 # TaskClock
-Configure your desired TaskClock.
-<br>
-<pre><code>npm i task-clock</code></pre>
+<div>Configure your desired TaskClock.</div>
+<div><pre>`npm i task-clock`</pre></div>
 
 ```javascript
-const TaskClock = require("task-clock");
+const { TaskClock } = require("task-clock");
 ```
-<br>
-<h2>Class TaskClock</h2>
-<h3>new TaskClock([options])</h3>
-<ul>
-	<details>
-		<summary>
-			<code>options</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
-		</summary>
-		<ul>
-			<details>
-				<summary>
-					<code>start</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a> Default: <code>new Date()</code>
-				</summary>
-				The <code>start</code> option must be an instance of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. If <code>start</code> is a date in the past <code>taskClock</code> calculates when <code>start</code> plus a number of <code>intervalMs</code> surpasses the time it is now and that calculated time is set to be the time of <code>nextTick</code>. If <code>start</code> is a date in the future <code>taskClock</code> waits untill the time it is now surpasses <code>start</code> and start ticking after that. Default for <code>start</code> is the time the instance of <code>taskClock</code> has been created.
-			</details>
-			<details>
-				<summary>
-					<code>autoStart</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;boolean&gt;</a> Default: <code>true</code>
-				</summary>
-				If <code>false</code> the <code>taskClock</code> is not started straight away but can manually by started by the method <code>taskClock.start</code>. When extending a class from <code>TaskClock</code> this option allows developers to initialize their own class properly before the <code>task</code> was invoked.
-			</details>
-			<details>
-				<summary>
-					<code>interval</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
-				</summary>
-				<ul>
-					<details>
-						<summary>
-							<code>d</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
-						</summary>
-						Abbreviation for days.
-					</details>
-					<details>
-						<summary>
-							<code>h</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
-						</summary>
-						Abbreviation for hours.
-					</details>
-					<details>
-						<summary>
-							<code>m</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
-						</summary>
-						Abbreviation for minutes.
-					</details>
-					<details>
-						<summary>
-							<code>s</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
-						</summary>
-						Abbreviation for seconds.
-					</details>
-					<details>
-						<summary>
-							<code>ms</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: <code>0</code>
-						</summary>
-						Abbreviation for milliseconds.
-					</details>
-				</ul>
-				The <code>intervalMs</code> is calculated as the sum-product of each defined parameters and their corresponding milliseconds. The parameters don't require to be integers but can also be decimal numbers. if <code>h</code> is 2.5 hours it's product would result in 9 million millisecons.
-			</details>
-			<details>
-				<summary>
-					<code>ticks</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: <code>Infinity</code>
-				</summary>
-				The number of ticks that invoke <code>task</code> untill <code>lastTick</code> is invoked and <code>taskClock</code> stops ticking. Default is <code>Infinity</code> and that is never reached because numbers higher than <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">MAX_SAFE_INTEGER</a> fail to <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Increment">increment</a>.
-			</details>
-			<details>
-				<summary>
-					<code>task</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
-				</summary>
-				<ul>
-					<details>
-						<summary>
-							<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
-						</summary>
-						returnes an instance of a <code>DateModel</code> as the first parameter.
-					</details>
-					<details>
-						<summary>
-							<code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
-						</summary>
-						returnes the last <code>tick</code> as the second parameter.
-					</details>
-				</ul>
-				If the <code>task</code> option is a function the created instance of <code>TaskClock</code> will have it's <code>task</code> propery overwriten by the function.
-			</details>
-			<details>
-				<summary>
-					<code>lastTick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
-				</summary>
-				<ul>
-					<details>
-						<summary>
-							<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
-						</summary>
-						returnes an instance of a <code>DateModel</code> as the first parameter.
-					</details>
-					<details>
-						<summary>
-							<code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
-						</summary>
-						returnes the last <code>tick</code> as the second parameter.
-					</details>
-				</ul>
-				If the <code>lastTick</code> option is a function the created instance of <code>TaskClock</code> will have it's <code>lastTick</code> propery overwriten by the function.
-			</details>
-		</ul>
-		Every option is optional and have defaults.
-	</details>
-</ul>
-<h3>taskClock.task(now, tick)</h3>
-<ul>
-	<details>
-		<summary>
-			<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
-		</summary>
-		returnes an instance of a <code>DateModel</code> as the first parameter.
-	</details>
-	<details>
-		<summary>
-			<code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
-		</summary>
-		returnes the n-th <code>tick</code> as the second parameter, starting from 1, 2, 3 etc.
-	</details>
-</ul>
-Developers should configure a <code>task</code> method if anything usefull sould be done with it. The <code>task</code> can be configured during construction or as a prototype method when extending a class of <code>TaskClock</code> and it may even be overwritten as instance property while actively ticking. 
-<h3>taskClock.lastTick(now, tick)</h3>
-<ul>
-	<details>
-		<summary>
-			<code>now</code> &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
-		</summary>
-		returnes an instance of a <code>DateModel</code> as the first parameter.
-	</details>
-	<details>
-		<summary>
-			<code>tick</code> <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
-		</summary>
-		returnes the last <code>tick</code> as the second parameter.
-	</details>
-</ul>
-Developers may configure the <code>lastTick</code> method that will be invoked when <code>taskClock</code> finishes. The <code>lastTick</code> can be configured during construction or as a prototype method when extending a class of <code>TaskClock</code> and it may even be overwritten as instance property while actively ticking.
-<h3>taskClock.start()</h3>
-When constructing a <code>taskClock</code> and <code>options.autoStart</code> was set to <code>false</code>, developers can now invoke the method <code>start</code>. This helps to finish the construction of their own class (that is extended from TaskClock) before the <code>task</code> was invoked by a tick.
-<h3>taskClock.finish()</h3>
-Developers may invoke the <code>finish</code> method manually. This method sets the <code>done</code> property to <code>true</code> and <code>task</code> property to <code>lastTick</code> so that when <code>taskClock</code> reaches <code>nextTick</code> then <code>lastTick</code> is invoked instead of <code>task</code>. This method works different than the <code>stop</code> method.
-<h3>taskClock.stop()</h3>
-Developers may invoke the <code>stop</code> method manually. This method immediately stops <code>taskClock</code> from ticking further and it invokes <code>lastTick</code> straight away.
-<h3>taskClock.ticks</h3>
-Readable property number of the number <code>ticks</code> until <code>taskClock</code> finishes. 
-<h3>taskClock.tick</h3>
-Readable property of the current <code>tick</code>.
-<h3>taskClock.intervalMs</h3>
-Readable property of the calculated sum-product from the interval option.
-<h3>taskClock.nextTick</h3>
-Readable property of nextTick's time in milliseconds that will have elapsed since the Unix epoch.  
-<h3>taskClock.done</h3>
-Readable property thast indicates whether taskClock is finishing or has stopped.
-<h3>taskClock.DateModel</h3>
-Readable property for internal purposes. Developers may configure a getter to return a self implemented Date model and this model must be extended from JavaScript's native <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> class because internal <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a> metods will be invoked. Below are examples with DateModel getter to be set to <a href="https://www.npmjs.com/package/locale-timezone-date">LocaleTimezoneDate</a>.
+<div>
+    <h2>Class TaskClock</h2>
+</div>
+
+<div>
+    <h3>new TaskClock([options])</h3>
+    <ul>
+        <details>
+            <summary>
+                `options` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
+            </summary>
+            <ul>
+                <details>
+                    <summary>
+                        `start` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a> Default: `new Date()`
+                    </summary>
+                    <div>
+                        The option start must be an instance of a <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>. If start set to a date in the past the taskClock invokes the task immediately.
+                    </div>
+                </details>
+                <details>
+                    <summary>
+                        `autoStart` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Boolean_type">&lt;boolean&gt;</a> Default: `true`
+                    </summary>
+                    <div>
+                        If the option autoStart is set to `false` the taskClock does not start untill the method start is invoked.
+                    </div>
+                </details>
+                <details>
+                    <summary>
+                        `interval` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">&lt;Object&gt;</a>
+                    </summary>
+                    <ul>
+                        <details>
+                            <summary>
+                                `d` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                            </summary>
+                            <div>
+                                Abbreviation for days.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `h` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                            </summary>
+                            <div>
+                                Abbreviation for hours.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `m` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                            </summary>
+                            <div>
+                                Abbreviation for minutes.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `s` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                            </summary>
+                            <div>
+                                Abbreviation for seconds.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `ms` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a> Default: `0`
+                            </summary>
+                            <div>
+                                Abbreviation for milliseconds.
+                            </div>
+                        </details>
+                    </ul>
+                    <div>
+                        The intervalMs is calculated as the sum of each defined parameters in milliseconds. The parameters don't require to be integers but can also be decimal numbers. A parameter h set to `2.5` hours is equal to 9 million milliseconds.
+                    </div>
+                </details>
+                <details>
+                    <summary>
+                        `ticks` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;integer&gt;</a> Default: `Infinity`
+                    </summary>
+                    <div>
+                        The number of ticks untill lastTick and taskClock stops ticking. Default is `Infinity` and that is never reached. The largest possible date in JavaScript is in the year `275760` when milliseconds reach `8640000000000000` and this is smaller than <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/MAX_SAFE_INTEGER">Number.MAX_SAFE_INTEGER</a> `9007199254740991`.
+                    </div>
+                </details>
+                <details>
+                    <summary>
+                        `task` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
+                    </summary>
+                    <ul>
+                        <details>
+                            <summary>
+                                `now` &lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                            </summary>
+                            <div>
+                                An instance of a DateModel.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                            </summary>
+                            <div>
+                                The current tick.
+                            </div>
+                        </details>
+                    </ul>
+                    <div>
+                        In case the task option was given in the constructor it becomes an instance function. Instance functions override class methods.
+                    </div>
+                </details>
+                <details>
+                    <summary>
+                        `lastTick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">&lt;Function&gt;</a>
+                    </summary>
+                    <ul>
+                        <details>
+                            <summary>
+                                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+                            </summary>
+                            <div>
+                                An instance of a DateModel.
+                            </div>
+                        </details>
+                        <details>
+                            <summary>
+                                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+                            </summary>
+                            <div>
+                                The current tick.
+                            </div>
+                        </details>
+                    </ul>
+                    <div>
+                        In case the lastTick option was given in the constructor it becomes an instance function. Instance functions override class methods.
+                    </div>
+                </details>
+            </ul>
+        </details>
+    </ul>
+</div>
+
+<div>
+    <h3>taskClock.task(now, tick)</h3>
+    <ul>
+        <details>
+            <summary>
+                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+            </summary>
+            <div>
+                An instance of a DateModel.
+            </div>
+        </details>
+        <details>
+            <summary>
+                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+            </summary>
+            <div>
+                The current tick.
+            </div>
+        </details>
+    </ul>
+    <div>
+        TaskClock has a default task method and it should be overriden. A class extended from TaskClock can be created with a task method. In case the task option was given in the constructor it becomes an instance function. In case the task property is overriden from a taskClock instance it becomes the task.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.lastTick(now, tick)</h3>
+    <ul>
+        <details>
+            <summary>
+                `now` <a href="#taskclockdatemodel">&lt;DateModel&gt;</a> Default: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">&lt;Date&gt;</a>
+            </summary>
+            <div>
+                An instance of a DateModel.
+            </div>
+        </details>
+        <details>
+            <summary>
+                `tick` <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Data_structures#Number_type">&lt;number&gt;</a>
+            </summary>
+            <div>
+                The current tick.
+            </div>
+        </details>
+    </ul>
+    <div>
+        TaskClock has a default lastTick method and it should be overriden. A class extended from TaskClock can be created with a lastTick method. In case the lastTick option was given in the constructor it becomes an instance function. In case the lastTick property is overriden from a taskClock instance it becomes the lastTick.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.start()</h3>
+    <div>
+        In case the option autoStart was set to `false` in the constructor invoke this method manually.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.finish()</h3>
+    <div>
+        Schedule the next tick to be the lastTick and then stops the taskClock.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.stop()</h3>
+    <div>
+        Immediately stops the taskClock and invokes the lastTick.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.ticks</h3>
+    <div>
+        Readable property of the amount of ticks untill lastTick.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.tick</h3>
+    <div>
+        Readable property of the current tick.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.intervalMs</h3>
+    <div>
+        Readable property of the interval in milliseconds.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.nextTick</h3>
+    <div>
+        Readable property of the timestamp in milliseconds of the next tick.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.done</h3>
+    <div>
+        Readable property that indicates there are no more active timeouts.
+    </div>
+</div>
+
+<div>
+    <h3>taskClock.DateModel</h3>
+    <div>
+        Overrides the now parameter that is passed over to the task and lastTick functions. DateModel can only be set by a value that is extended from <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">Date</a>.
+    </div>
+</div>
+
 <h2>Examples</h2>
 
 ```javascript
 const LocaleTimezoneDate = require("locale-timezone-date");
-const TaskClock = require("task-clock");
+const { TaskClock } = require("task-clock");
 // ...
 //*
 new TaskClock({
@@ -239,7 +335,7 @@ class MyClockB extends TaskClock {
 			console.log(now.toLocaleISOString(), `delay: ${delay} ms`, tick);
 		else
 			console.log(now.toLocaleISOString());
-		if (delay <= -2)
+		if (delay <= 2)
 			return this.stop();
 		this.prevTick = this.nextTick;
 	};
@@ -257,16 +353,25 @@ class MyClockB extends TaskClock {
 new Promise(MyClockB.promisify)
 	.then(() => console.log("finished promise"))
 	.catch(now => console.log("Rejected: ", now.toLocaleISOString()));
-//
-// 2021-04-09T02:04:03.203+0200
-// 2021-04-09T02:04:03.405+0200 delay: 5 ms
-// 2021-04-09T02:04:03.608+0200 delay: 8 ms
-// 2021-04-09T02:04:03.811+0200 delay: 11 ms
-// 2021-04-09T02:04:04.013+0200 delay: 13 ms
-// 2021-04-09T02:04:04.201+0200 delay: 1 ms
-// finished promise
-// ...
-//*/
+/*
+2022-05-15T14:38:32.816+0200 1
+2022-05-15T14:38:33.011+0200 2 delay: 11 ms
+2022-05-15T14:38:33.214+0200 3 delay: 14 ms
+2022-05-15T14:38:33.404+0200 4 delay: 4 ms
+2022-05-15T14:38:33.606+0200 5 delay: 6 ms
+2022-05-15T14:38:33.810+0200 6 delay: 10 ms
+2022-05-15T14:38:34.015+0200 7 delay: 15 ms
+2022-05-15T14:38:34.203+0200 8 delay: 3 ms
+2022-05-15T14:38:34.406+0200 9 delay: 6 ms
+2022-05-15T14:38:34.610+0200 10 delay: 10 ms
+Rejected:  2022-05-15T14:38:34.812+0200
+-----
+2022-05-15T14:39:51.967+0200 1
+2022-05-15T14:39:52.009+0200 2 delay: 9 ms
+2022-05-15T14:39:52.212+0200 3 delay: 12 ms
+2022-05-15T14:39:52.400+0200 4 delay: 0 ms
+finished promise
+*/
 
 //*
 const timer = new TaskClock();
@@ -275,8 +380,8 @@ const timer = new TaskClock();
 // 2021-03-07T15:21:17.283Z running task 3
 // etc...
 // ...
-//(somewhere in the future running) task 1057304576
+//{somewhere in the future} running task 1057304576
 timer.finish();
-//(somewhere in the future) done
+//{somewhere in the future} done
 //*/
 ```
