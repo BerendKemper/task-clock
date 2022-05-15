@@ -1,6 +1,6 @@
 {
     "name": "task-clock",
-    "version": "2.2.2",
+    "version": "2.2.3",
     "description": "Task scheduler",
     "main": "index.js",
     "scripts": {},
