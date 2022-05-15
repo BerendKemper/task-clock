@@ -7,8 +7,8 @@ module "task-clock" {
          *     autoStart?: boolean, // Default true
          *     interval?: { d?: number, h?: number, m?: number, s?: number, ms?: number }, // Default 1000 ms
          *     ticks?: number, // Default Infinity
-         *     task?: function onTick(now: Date, tick: number) {},
-         *     lastTick?: function onTick(now: Date, tick: number) {}
+         *     task?: (now: Date, tick: number) => void,
+         *     lastTick?: (now: Date, tick: number) => void
          * })
          * ```
          * - If the option `start` is set to a date in the past the taskClock invokes the `task` immediately.
