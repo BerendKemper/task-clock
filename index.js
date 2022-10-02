@@ -25,12 +25,15 @@ module.exports = class TaskClock {
             if (nowMs > taskTime)
                 taskTime += this.#intervalMs * Math.ceil((nowMs - taskTime) / this.#intervalMs);
         }
-        this.#clock = setTimeout(() => this.#nextTick(), (taskTime - Date.now()) * 0.95);
+        this.#clock = setTimeout(this.#makeNextTick(), 1000);
         if (fire) {
             this.#taskTime.setTime(taskTime);
             this.#end = ++this.#tick === this.#ticks;
             this.task(new this.DateModel(), this.#tick);
         }
+    }
+    #makeNextTick() {
+        return () => this.#nextTick();
     }
     constructor(options = {}) {
         if (typeof options.task === "function")

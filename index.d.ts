@@ -1,4 +1,4 @@
-export = class TaskClock {
+declare class TaskClock {
     /**Configure a taskClock to schedule functions.
      * ```javascript
      * new TaskClock(options?: {
@@ -82,4 +82,5 @@ interface Interval {
     s?: number;
     ms?: number;
 }
-type onTick = (now: Date, tick: number) => void;
+type onTick = (this: TaskClock, now: Date, tick: number) => void;
+export = TaskClock;
